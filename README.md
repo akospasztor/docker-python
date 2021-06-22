@@ -1,9 +1,11 @@
 # docker-python
 
-This repository contains minimal docker containers with python. Each image has
-a specific python version pre-installed with `pyenv`.
+This repository contains docker container images with python installation.
+Each image has a specific python version pre-installed with `pyenv`.
 
-https://hub.docker.com/repository/docker/akospasztor/docker-python
+Repository link: https://github.com/akospasztor/docker-python
+
+Docker HUB link: https://hub.docker.com/r/akospasztor/docker-python
 
 [![Docker Image CI](https://github.com/akospasztor/docker-python/actions/workflows/ci-docker-image.yml/badge.svg)](https://github.com/akospasztor/docker-python/actions/workflows/ci-docker-image.yml)
 
