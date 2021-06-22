@@ -5,7 +5,7 @@ Each image has a specific python version pre-installed with `pyenv`.
 
 Repository link: https://github.com/akospasztor/docker-python
 
-Docker HUB link: https://hub.docker.com/r/akospasztor/docker-python
+Docker Hub link: https://hub.docker.com/r/akospasztor/docker-python
 
 [![Docker Image CI](https://github.com/akospasztor/docker-python/actions/workflows/ci-docker-image.yml/badge.svg)](https://github.com/akospasztor/docker-python/actions/workflows/ci-docker-image.yml)
 
