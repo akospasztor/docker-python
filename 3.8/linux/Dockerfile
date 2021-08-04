@@ -10,6 +10,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 # Install required packages
 RUN apt-get update && apt-get install -y \
     build-essential \
+    ca-certificates \
     curl \
     git \
     libbz2-dev \
