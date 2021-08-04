@@ -8,8 +8,9 @@ ARG PYTHON_ENV=docker-env
 ARG DEBIAN_FRONTEND=noninteractive
 
 # Install required packages
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get -y -q --no-install-recommends install \
     build-essential \
+    ca-certificates \
     curl \
     git \
     libbz2-dev \
