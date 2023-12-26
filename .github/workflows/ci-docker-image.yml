@@ -58,6 +58,14 @@ jobs:
       run: >
         docker run --rm -i --env PYTHON_VERSION=${{ matrix.version }}
         ${{ steps.docker_meta.outputs.tags }} < script/test-python-version.sh
+    - name: Search for vulnerabilities with docker scout
+      uses: docker/scout-action@v1
+      with:
+        command: cves
+        image: ${{ steps.docker_meta.outputs.tags }}
+        only-severities: critical, high
+        only-fixed: true
+        summary: true
     - name: Push docker image
       if: ${{ contains(github.ref, 'refs/tags/') }}
       uses: docker/build-push-action@v5
