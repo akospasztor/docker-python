@@ -44,11 +44,34 @@ jobs:
         username: ${{ env.DOCKERHUB_USER }}
         password: ${{ secrets.DOCKERHUB_PAT }}
     - name: Build docker image
-      id: docker_build
       uses: docker/build-push-action@v5
       with:
         context: ./${{ matrix.version }}/${{ matrix.os }}
-        push: ${{ contains(github.ref, 'refs/tags/') }}
+        load: true
+        push: false
+        tags: ${{ steps.docker_meta.outputs.tags }}
+        labels: ${{ steps.docker_meta.outputs.labels }}
+        builder: ${{ steps.buildx.outputs.name }}
+        cache-from: type=local,src=/tmp/.buildx-cache
+        cache-to: type=local,dest=/tmp/.buildx-cache
+    - name: Test docker image
+      run: >
+        docker run --rm -i --env PYTHON_VERSION=${{ matrix.version }}
+        ${{ steps.docker_meta.outputs.tags }} < script/test-python-version.sh
+    - name: Search for vulnerabilities with docker scout
+      uses: docker/scout-action@v1
+      with:
+        command: cves
+        image: ${{ steps.docker_meta.outputs.tags }}
+        only-severities: critical, high
+        only-fixed: true
+        summary: true
+    - name: Push docker image
+      if: ${{ contains(github.ref, 'refs/tags/') }}
+      uses: docker/build-push-action@v5
+      with:
+        context: ./${{ matrix.version }}/${{ matrix.os }}
+        push: true
         tags: ${{ steps.docker_meta.outputs.tags }}
         labels: ${{ steps.docker_meta.outputs.labels }}
         builder: ${{ steps.buildx.outputs.name }}
