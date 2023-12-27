@@ -2,6 +2,7 @@ name: Docker Image CI
 on: push
 env:
   DOCKERHUB_USER: akospasztor
+  DOCKER_IMAGE_NAME: akospasztor/docker-python
 
 jobs:
   build:
@@ -31,7 +32,7 @@ jobs:
       id: docker_meta
       uses: docker/metadata-action@v5
       with:
-        images: akospasztor/docker-python
+        images: ${{ env.DOCKER_IMAGE_NAME }}
         flavor: |
           prefix=${{ matrix.version }}-${{ matrix.os }}-
           latest=false
@@ -57,7 +58,8 @@ jobs:
     - name: Test docker image
       run: >
         docker run --rm -i --env PYTHON_VERSION=${{ matrix.version }}
-        ${{ steps.docker_meta.outputs.tags }} < script/test-python-version.sh
+        ${{ env.DOCKER_IMAGE_NAME }}:${{ steps.docker_meta.outputs.version }}
+        < script/test-python-version.sh
     - name: Search for vulnerabilities with docker scout
       uses: docker/scout-action@v1
       with:
