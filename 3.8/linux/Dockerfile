@@ -44,6 +44,9 @@ RUN pyenv install $PYTHON_VERSION
 RUN pyenv virtualenv $PYTHON_VERSION $PYTHON_ENV
 RUN pyenv global $PYTHON_ENV
 
+# Upgrade pip and setuptools
+RUN pyenv exec pip install --upgrade pip setuptools
+
 # Set the pyenv isntallation mode bits to allow rwX for everyone. The reason is
 # that the azure pipelines atomatically adds a new user inside the running
 # container and this user executes the job steps defined in the pipeline yml
