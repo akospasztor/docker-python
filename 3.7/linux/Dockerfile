@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
 # Configuration
 ARG PYTHON_VERSION=3.7.10
