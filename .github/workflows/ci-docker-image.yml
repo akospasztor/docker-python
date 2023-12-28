@@ -64,7 +64,7 @@ jobs:
       uses: docker/scout-action@v1
       with:
         command: cves
-        image: ${{ steps.docker_meta.outputs.tags }}
+        image: ${{ env.DOCKER_IMAGE_NAME }}:${{ steps.docker_meta.outputs.version }}
         only-severities: critical, high
         only-fixed: true
         summary: true
