@@ -1,7 +1,7 @@
 FROM ubuntu:22.04
 
 # Configuration
-ARG PYTHON_VERSION=3.12.1
+ARG PYTHON_VERSION=3.12.4
 ARG PYTHON_ENV=docker-env
 
 # Suppress user dialogs (and selects the default answer) during apt-get install
