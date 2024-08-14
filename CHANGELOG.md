@@ -1,5 +1,19 @@
 # Changelog
 
+## 2.0.1 (2024-08-14)
+
+- Upgrade python 3.11 image version from 3.11.7 to 3.11.9
+- Upgrade python 3.12 image version from 3.12.1 to 3.12.4
+
+Available images:
+
+| Python version | Base image   |
+| -------------- | ------------ |
+| 3.7.17         | ubuntu 22.04 |
+| 3.8.17         | ubuntu 22.04 |
+| 3.11.9         | ubuntu 22.04 |
+| 3.12.4         | ubuntu 22.04 |
+
 ## 2.0.0 (2023-12-27)
 
 - Upgrade all base images from ubuntu 20.04 to ubuntu 22.04
